@@ -1,18 +1,13 @@
 package ru.rgordeev.converter;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
 public class MainActivity extends AppCompatActivity {
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +15,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void onButtonClick(View view) {
-        ImageView catImage = findViewById(R.id.catImage);
-        catImage.setImageResource(R.drawable.cat2);
+    public void convert(View view) {
+        TextView out = findViewById(R.id.amountOut);
+        EditText input = findViewById(R.id.amount);
+        Double amount = Double.valueOf(input.getText().toString().equals("") ? "0" : input.getText().toString());
+
+        String output = String.format("%.2f USD is about %.2f RUR", amount, amount * 62.1673);
+
+        out.setText(output);
+
     }
 }
